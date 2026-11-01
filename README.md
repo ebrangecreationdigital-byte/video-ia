@@ -4,6 +4,16 @@ Un skill pour [Claude Code](https://claude.com/claude-code) qui produit une vid�
 script → voix off IA → images → montage automatique (zoom lent + sous-titres mot à mot) → MP4 prêt pour TikTok,
 Reels, Shorts ou YouTube. Pas de tournage, pas de visage à l'écran, pas de logiciel payant.
 
+## Exemple
+
+<p align="center"><img src="docs/apercu.gif" width="240" alt="Extrait de la vidéo test : un artisan dans son utilitaire, sous-titres mot à mot"></p>
+
+Vidéo test de 33 s en 1080×1920 : un script de 93 mots, une voix off edge-tts et 4 clips de 8 s animés avec Veo 3.1 Lite
+(Google Flow, formule gratuite) à partir d'images Fooocus. Le montage, la voix et les sous-titres viennent du script.
+Images et clips générés par IA.
+
+![Quatre images clés de la vidéo test](docs/images-cles.jpg)
+
 ## Ce que fait le script
 ```
 python scripts/fabriquer_video.py --texte script.txt --images images --sortie ma_video
@@ -11,6 +21,8 @@ python scripts/fabriquer_video.py --texte script.txt --images images --sortie ma
 - Voix off avec [edge-tts](https://github.com/rany2/edge-tts) et la position de chaque mot.
 - Sous-titres de 4 mots, ponctuation reprise du texte d'origine, coupés à la fin des phrases.
 - Chaque image prend une part égale de la durée, recadrée pour remplir l'écran, avec un zoom lent.
+- Accepte aussi des clips vidéo IA (`.mp4`, `.mov`, `.webm`, `.mkv`), mélangés ou non avec des images : recadrés,
+  son d'origine coupé, dernière image figée si le clip est plus court que sa part de la voix.
 - Assemblage ffmpeg en 1080×1920 (ou 1920×1080 / 1080×1080), H.264 + AAC, prêt à publier.
 
 Test : un texte de 37 mots et 3 images donnent une vidéo de 14,4 s en environ 35 s sur un portable sans carte graphique.
